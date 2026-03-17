@@ -10,3 +10,13 @@ export const sequelize = new Sequelize(
         dialect: process.env.DB_DIALECT
     }
 )
+
+export const startDB = async () => {
+    try {
+        await sequelize.authenticate(),
+            console.log("Se ha logrado autenticar"),
+            await sequelize.sync()
+    } catch (error) {
+        console.log(error)
+    }
+}
