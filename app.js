@@ -1,15 +1,9 @@
-import express from "express"
-import "dotenv/config"
-import { startDB } from "./src/config/database.js"
+import express from "express";
+const app = express();
+const port = 3000;
 
-const app = express()
-app.use(express.json())
+app.use(express.json());
 
-const PORT = process.env.PORT
-
-
-startDB().then(()=>{
-   app.listen(PORT,()=>{
-    console.log(`Se ha conectado en https://localhost:${PORT}`)
-   })
-})
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
