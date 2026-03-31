@@ -1,6 +1,5 @@
-import { Types } from "mysql2";
-import { sequelize } from "../config/database";
 import { DataTypes } from "sequelize";
+import { sequelize } from "../config/database";
 
 export const Profile = sequelize.define(
   "TagModel",

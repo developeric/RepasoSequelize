@@ -6,22 +6,23 @@ import { User } from "./user.model.js";
 //Este archivo es un index el cual va a servir para ver las relaciones
 //mucho mas facil sin rellenar de codigo cada archivo.model.js, como si fuera
 //un routes.index.js y asi tener un poco mas ordenado     -Eri del pasado
-/**
- **INSTALAR EL BETTER COMMENTS
- */
-//Article
 
-//ArticleTag
+//!Articles
+Article.belongsTo(Profile, { foreignKey: "profile_id", as: "profile", })
+Article.hasMany(Tag, { foreignKey: "tag_id", as: "tag" })
 
-//Profile
+//!ArticleTags
+ArticleTag.belongsToMany(Article, { foreignKey: "article_id", as: "article" })
+ArticleTag.belongsToMany(Tag, { foreignKey: "tag_id", as: "tag" })
 
+//!Profile
 Profile.belongsTo(User, {
-  foreignKey: "user_id",
-  as: "user",
-  onDelete: "CASCADE",
+  foreignKey: "user_id", as: "user", onDelete: "CASCADE",
 });
+Profile.hasMany(Article, { foreignKey: "article_id", as: "article" })
 
-//Tag
+//!TAG
+Tag.belongsToMany(Article, { foreignKey: "article_id", as: "article" })
 
-//User
-User.hasOne(Profile, { foreignKey: "user_id" });
+//!USER
+User.hasOne(Profile, { foreignKey: "user_id", as: "profile  " });
